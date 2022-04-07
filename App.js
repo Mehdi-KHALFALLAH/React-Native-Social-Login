@@ -17,6 +17,7 @@ import {
   useColorScheme,
   View,
   Button,
+  TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -28,19 +29,40 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
+import {
+  LoginButton,
+  AccessToken,
+  GraphRequest,
+  LoginManager,
+} from 'react-native-fbsdk-next';
 
-const App: () => Node = () => {
-  GoogleSignin.configure({
-    webClientId:
+const App = () => {
+  async function onFacebookButtonPress() {
+    // Attempt login with permissions
+    const result = await LoginManager.logInWithPermissions([
+      'public_profile',
+      'email',
+    ]);
+    console.log(result);
+    if (result.isCancelled) {
+      throw 'User cancelled the login process';
+    }
 
-      '272995458339-kqa466g1sugs6773ktac8isu4k0f0j3o.apps.googleusercontent.com',
-      
-  });
-  const isDarkMode = useColorScheme() === 'dark';
+    // Once signed in, get the users AccesToken
+    const data = await AccessToken.getCurrentAccessToken();
+    console.log(data);
+    if (!data) {
+      throw 'Something went wrong obtaining access token';
+    }
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+    // Create a Firebase credential with the AccessToken
+    const facebookCredential = auth.FacebookAuthProvider.credential(
+      data.accessToken,
+    );
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(facebookCredential);
+  }
   const GSign = async () => {
     // Get the users ID token
     const {idToken} = await GoogleSignin.signIn();
@@ -58,14 +80,31 @@ const App: () => Node = () => {
         console.log(error);
       });
   };
+  GoogleSignin.configure({
+    webClientId:
+      '272995458339-kqa466g1sugs6773ktac8isu4k0f0j3o.apps.googleusercontent.com',
+  });
+  const isDarkMode = useColorScheme() === 'dark';
+
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView>
         <View style={styles.sectionContainer}>
           <View style={styles.googleSign}>
-            <Button title="google sign in" 
-            onPress={ GSign}/>
+            <Button title="google sign in" onPress={GSign} />
+          </View>
+          <View>
+            <TouchableOpacity
+              style={{height: 50, width: 100}}
+              on
+              onPress={onFacebookButtonPress}>
+              <Text>hello there</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>

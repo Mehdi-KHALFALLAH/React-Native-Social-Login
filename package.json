@@ -15,7 +15,8 @@
     "@react-native-google-signin/google-signin": "^7.2.2",
     "doctor-cli": "^1.1.0",
     "react": "17.0.2",
-    "react-native": "0.68.0"
+    "react-native": "0.68.0",
+    "react-native-fbsdk-next": "^7.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
