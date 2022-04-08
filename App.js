@@ -98,12 +98,10 @@ const App = () => {
           <View style={styles.googleSign}>
             <Button title="google sign in" onPress={GSign} />
           </View>
-          <View>
-            <TouchableOpacity
-              style={{height: 50, width: 100}}
-              on
+          <View >
+            <TouchableOpacity 
               onPress={onFacebookButtonPress}>
-              <Text>hello there</Text>
+              <Text>FACEBOOK LOGIN</Text>
             </TouchableOpacity>
           </View>
         </View>
