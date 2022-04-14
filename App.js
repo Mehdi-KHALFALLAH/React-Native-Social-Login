@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -35,8 +35,15 @@ import {
   GraphRequest,
   LoginManager,
 } from 'react-native-fbsdk-next';
-
+import {
+  requestUserPermission,
+  notificationListner,
+} from './utillities/PushNotifications';
 const App = () => {
+  useEffect(() => {
+    requestUserPermission();
+    notificationListner();
+  }, []);
   async function onFacebookButtonPress() {
     // Attempt login with permissions
     const result = await LoginManager.logInWithPermissions([
