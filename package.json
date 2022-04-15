@@ -20,7 +20,8 @@
     "doctor-cli": "^1.1.0",
     "react": "17.0.2",
     "react-native": "0.68.0",
-    "react-native-fbsdk-next": "^7.3.3"
+    "react-native-fbsdk-next": "^7.3.3",
+    "react-native-image-picker": "^4.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
