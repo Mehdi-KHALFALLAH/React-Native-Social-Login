@@ -14,7 +14,6 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  
   useColorScheme,
   View,
   Button,
@@ -28,8 +27,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { NativeModules } from 'react-native';
-
+import {NativeModules} from 'react-native';
 
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
@@ -44,7 +42,6 @@ import {
   notificationListner,
 } from './utillities/PushNotifications';
 const App = () => {
-  const { RNTwitterSignIn } = NativeModules;
   useEffect(() => {
     requestUserPermission();
     notificationListner();
@@ -103,11 +100,14 @@ const App = () => {
   };
   async function onTwitterButtonPress() {
     // Perform the login request
-    const { authToken, authTokenSecret } = await RNTwitterSignIn.logIn();
-  
+    const {authToken, authTokenSecret} = await RNTwitterSignIn.logIn();
+
     // Create a Twitter credential with the tokens
-    const twitterCredential = auth.TwitterAuthProvider.credential(authToken, authTokenSecret);
-  
+    const twitterCredential = auth.TwitterAuthProvider.credential(
+      authToken,
+      authTokenSecret,
+    );
+
     // Sign-in the user with the credential
     return auth().signInWithCredential(twitterCredential);
   }
