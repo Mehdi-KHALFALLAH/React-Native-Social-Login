@@ -1543,6 +1543,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     "fastq" "^1.6.0"
 
+"@notifee/react-native@^5.1.0":
+  "integrity" "sha512-8fa2tTCgvdYO/xTqgoax1VxF/bLOAKIZd9hM85/ALUMQZX9LQz+y7rVMBCt3ZWI+lIVaZ50Px/4cMWYMnmqy9g=="
+  "resolved" "https://registry.npmjs.org/@notifee/react-native/-/react-native-5.1.0.tgz"
+  "version" "5.1.0"
+
 "@reach/router@^1.2.1":
   "integrity" "sha512-+mtn9wjlB9NN2CNnnC/BRYtwdKBfSyyasPYraNAyvaV1occr/5NnB4CVzjEZipNHwYebQwcndGUmpFzxAUoqSA=="
   "resolved" "https://registry.npmjs.org/@reach/router/-/router-1.3.4.tgz"
@@ -1776,11 +1781,6 @@
   "integrity" "sha512-FqSJAEYz+SNeIOyokFX3e7nbBgK0js/Hye0YNY+cV0Qf1NxKw1vRt2MQB3kfuVWFCb+OSovgQCl6W8dhYvsblw=="
   "resolved" "https://registry.npmjs.org/@react-native-google-signin/google-signin/-/google-signin-7.2.2.tgz"
   "version" "7.2.2"
-
-"@react-native-twitter-signin/twitter-signin@^1.2.0":
-  "integrity" "sha512-varhgZUxCyN6mhdjhoRixUmtVSVpI1jkHQSHgOVt9v+YIdHYx85Dtd/gfYIo1MRVMbh+hz3veiT5xTzil7Dbzg=="
-  "resolved" "https://registry.npmjs.org/@react-native-twitter-signin/twitter-signin/-/twitter-signin-1.2.0.tgz"
-  "version" "1.2.0"
 
 "@react-native/assets@1.0.0":
   "integrity" "sha512-KrwSpS1tKI70wuKl68DwJZYEvXktDHdZMG0k2AXD/rJVSlB23/X2CB2cutVR0HwNMJIal9HOUOBB2rVfa6UGtQ=="
@@ -10249,6 +10249,11 @@
   dependencies:
     "prop-types" "^15.6.2"
     "react-native-animatable" "1.3.3"
+
+"react-native-notifications@^4.2.4":
+  "integrity" "sha512-ffToxERa2bRUsXShCO19yXY6c6l4Esq7MqRKAb4mPSn+T428X7Je7WYvWOIOVw/BMGJ3R0lPrZk52vDpoYqanw=="
+  "resolved" "https://registry.npmjs.org/react-native-notifications/-/react-native-notifications-4.2.4.tgz"
+  "version" "4.2.4"
 
 "react-native-swipe-gestures@^1.0.4":
   "integrity" "sha512-Ns7Bn9H/Tyw278+5SQx9oAblDZ7JixyzeOczcBK8dipQk2pD7Djkcfnf1nB/8RErAmMLL9iXgW0QHqiII8AhKw=="

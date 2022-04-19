@@ -14,7 +14,6 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  
   useColorScheme,
   View,
   Button,
@@ -28,8 +27,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { NativeModules } from 'react-native';
-
+import {NativeModules} from 'react-native';
 
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
@@ -43,12 +41,31 @@ import {
   requestUserPermission,
   notificationListner,
 } from './utillities/PushNotifications';
+import notifee from '@notifee/react-native';
+
 const App = () => {
-  const { RNTwitterSignIn } = NativeModules;
+  const {RNTwitterSignIn} = NativeModules;
   useEffect(() => {
     requestUserPermission();
     notificationListner();
   }, []);
+
+  async function onDisplayNotification() {
+    // Create a channel
+    const channelId = await notifee.createChannel({
+      id: 'default',
+      name: 'Default Channel',
+    });
+
+    // Display a notification
+    await notifee.displayNotification({
+      title: 'Hello Mehdi',
+      body: 'First notification of Fantka',
+      android: {
+        channelId,
+      },
+    });
+  }
   async function onFacebookButtonPress() {
     // Attempt login with permissions
     const result = await LoginManager.logInWithPermissions([
@@ -103,11 +120,14 @@ const App = () => {
   };
   async function onTwitterButtonPress() {
     // Perform the login request
-    const { authToken, authTokenSecret } = await RNTwitterSignIn.logIn();
-  
+    const {authToken, authTokenSecret} = await RNTwitterSignIn.logIn();
+
     // Create a Twitter credential with the tokens
-    const twitterCredential = auth.TwitterAuthProvider.credential(authToken, authTokenSecret);
-  
+    const twitterCredential = auth.TwitterAuthProvider.credential(
+      authToken,
+      authTokenSecret,
+    );
+
     // Sign-in the user with the credential
     return auth().signInWithCredential(twitterCredential);
   }
@@ -122,6 +142,9 @@ const App = () => {
           <View>
             <TouchableOpacity onPress={onFacebookButtonPress}>
               <Text>FACEBOOK LOGIN</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onDisplayNotification}>
+              <Text>notifee</Text>
             </TouchableOpacity>
           </View>
         </View>
